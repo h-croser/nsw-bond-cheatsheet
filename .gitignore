@@ -6,3 +6,4 @@ yarn-error.log
 **/__pycache__/
 **/.DS_Store
 **venv/
+/docs/data/
