@@ -160,6 +160,13 @@ class FairTradingScraper:
         refunds_df.to_csv('./refunds.csv', index=False)
 
     @staticmethod
+    def update_refunds_optimised():
+        refunds_df: DataFrame = FairTradingScraper.get_refunds_dataframe()
+        refunds_df = refunds_df[['date_paid', 'tenant_payment', 'agent_payment', 'postcode']]
+        refunds_df = refunds_df.groupby(['date_paid', 'postcode']).agg({'tenant_payment': 'sum', 'agent_payment': 'sum'}).reset_index()
+        refunds_df.to_csv('./refunds-optimised.csv', index=False)
+
+    @staticmethod
     def update_all():
         print("Updating models...")
         FairTradingScraper.update_holdings()
