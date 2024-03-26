@@ -1,4 +1,4 @@
-.idea/*
+**.idea/*
 dist/
 docs/.observablehq/cache/
 node_modules/
