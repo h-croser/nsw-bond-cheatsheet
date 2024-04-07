@@ -1,54 +1,244 @@
 ---
 title: Data
+theme: [coffee, wide]
+toc: true
 ---
+
 # Bond Data
 
 ```js
-// const lodgements = FileAttachment("./data/lodgements.csv").csv({typed: true});
-const refunds = FileAttachment("./data/refunds-optimised.csv").csv({typed: true});
+const nsw_state_outline = FileAttachment("./data/nsw_outline.json").json();
+const nsw_postcodes = FileAttachment("./data/nsw_postcodes.csv").csv({typed: true});
+const lodgements = FileAttachment("./data/lodgements.csv").csv({typed: true});
+const holdings = FileAttachment("./data/holdings.csv").csv({typed: true});
+const refunds_totals = FileAttachment("./data/refunds-totals.csv").csv({typed: true});
+const refunds_portions = FileAttachment("./data/refunds-portions.csv").csv({typed: true});
+```
+
+
+```js
+var postcodeInput = Inputs.text({
+    placeholder: "All NSW",
+    type: "number",
+    label: "Enter postcode",
+    submit: true
+});
+
+var postcode = view(postcodeInput, {marginBottom: 0, marginTop: 0});
 ```
 
 ```js
-const postcode = view(
-    Inputs.text({
-        type: "number",
-        label: "Postcode",
-        placeholder: "All NSW",
-        submit: true
-    })
-);
+const curr_postcode = nsw_postcodes.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
+const postcodeStr = postcode !== "" ? "postcode " + postcode : "all NSW";
+
+const postcode_lodgements = lodgements.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
+const postcode_holdings = holdings.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
+const postcode_refunds_totals = refunds_totals.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
+const postcode_refunds_portions = refunds_portions.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
 ```
 
 ```js
-const postcode_refunds = refunds.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
-```
+const postcodeMap = Plot.plot({
+    width: `${width}`,
 
-```js
-display(Plot.legend({
-    color:{
-        type:"categorical",
-        domain: ["Tenants", "Landlords/agents"],
-        range: ["white", "orange"]
+    projection: {
+        type: "reflect-y",
+        domain: nsw_state_outline
+    },
+    marks: [
+        Plot.geo(nsw_state_outline),
+        Plot.dot(curr_postcode, {x: 'long', y: 'lat', r: 1, fill: '#fdcdac', tip: true, title: (d) => `Postcode: ${d.postcode} \nLocality: ${d.locality}`}),
+        Plot.dot(curr_postcode, Plot.pointer({x: "long", y: "lat", fill: "#b3e2cd", r: 3}))
+    ]
+});
 
+postcodeMap.addEventListener("click", (event) => {
+    if ((postcodeMap.value !== null) && (postcodeMap.value !== undefined)) {
+        postcodeInput.value = postcodeMap.value.postcode;
+        postcodeInput.dispatchEvent(new Event("input"));
+    } else {
+        postcodeInput.value = "";
+        postcodeInput.dispatchEvent(new Event("input"));
     }
-}));
-display(Plot.plot({
+});
+```
+
+```js
+const bondRecipients = Plot.plot({
+    title: `Count of bond recipients for ${postcodeStr}`,
+    subtitle: "The total number of bonds by recipient since Jan 4th, 2021",
     marginTop: 20,
-    marginRight: 100,
-    marginBottom: 30,
+    marginRight: 20,
+    marginBottom: 40,
     marginLeft: 100,
-    width: 1000,
+    width: `${width}`,
     
-    title: "Cumulative bond held over time by tenants and landlords",
-    grid: true,
-    x: { type: "time", label: "Date" },
-    y: { label: "Bond kept (AUD)" },
+    color: {
+        type: "categorical",
+        domain: ["Tenant", "Split", "Landlord"],
+        range: ["#b3e2cd", "#ffffff", "#fdcdac"],
+        legend: true
+    },
+
+    x: {
+        label: "Recipient"
+    },
+    y: {
+        grid: true,
+        label: "Count"
+    },
     marks: [
         Plot.ruleY([0]),
-        Plot.axisY({tickFormat: (x) => "$" + x.toLocaleString()}),
-        Plot.lineY(postcode_refunds, Plot.mapY("cumsum", { label: "Tenants", stroke: "white", y: "tenant_payment", x: "date_paid", markerEnd: "dot" })),
-        Plot.lineY(postcode_refunds, Plot.mapY("cumsum", { label: "Landlords/agents", stroke: "orange", y: "agent_payment", x: "date_paid", markerEnd: "dot" })),
-        Plot.text(postcode_refunds, Plot.selectLast( Plot.mapY("cumsum", { y: "tenant_payment", x: "date_paid", text: "${tenantSum}", textAnchor: "start", dx: 3 })))
+        Plot.barY(postcode_refunds_portions, Plot.groupX({ y: "sum" }, { x: "recipient", y: "bin_count", fill: "recipient", tip: true })),
+        Plot.text(postcode_refunds_portions, Plot.groupX({ text: "sum", y: "sum" }, { y: "bin_count", x: "recipient", dy: -10, text: "bin_count", textAnchor: "middle" }))
     ]
-}));
+});
+```
+
+```js
+const totalFunds = Plot.plot({
+    title: `Total number of bonds held by RBO over time for ${postcodeInput.value !== "" ? postcodeInput.value : "all NSW"}`,
+    marginTop: 30,
+    marginRight: 20,
+    marginBottom: 40,
+    marginLeft: 100,
+    width: `${width}`,
+
+    grid: true,
+    x: {
+        type: "time",
+        label: "Date of recording"
+    },
+    y: {
+        label: "Bonds held"
+    },
+    marks: [
+        Plot.lineY(postcode_holdings, Plot.groupX({ y: "sum" }, { x: "date", y: "bonds_held", stroke: "#fdcdac" })),
+        Plot.areaY(postcode_holdings, Plot.groupX({ y: "sum" }, { x: "date", y: "bonds_held", fill: "#fdcdac", fillOpacity: 0.1 })),
+        Plot.dotY(postcode_holdings, Plot.groupX({ y: "sum" }, { x: "date", y: "bonds_held", fill: "#ffffff", tip: "x" }))
+    ]
+});
+```
+
+```js
+const sumBonds = Plot.plot({
+    title: `Cumulative bond funds kept by tenants and landlords for ${postcodeInput.value !== "" ? postcodeInput.value : "all NSW"}`,
+    subtitle: "The sum of all bond funds kept by tenants and landlords after the bond is settled, since Jan 4th, 2021",
+    marginTop: 20,
+    marginRight: 40,
+    marginBottom: 40,
+    marginLeft: 100,
+    width: `${width}`,
+
+    color: {
+        type: "categorical",
+        domain: ["Tenants", "Landlords"],
+        range: ["#b3e2cd", "#fdcdac"],
+        legend: true
+    },
+  
+    x: {
+        grid: true,
+        label: "Bond kept (AUD$)"
+    },
+    y: {
+        label: "Recipient"
+    },
+    marks: [
+        Plot.axisX({tickFormat: (x) => "$" + x.toLocaleString()}),
+        Plot.barX(postcode_refunds_totals, Plot.groupZ({ x: "sum" }, { x: "tenant_payment", y: ["Tenants"], fill: "#b3e2cd", tip: "xy" })),
+        Plot.barX(postcode_refunds_totals, Plot.groupZ({ x: "sum" }, { x: "agent_payment", y: ["Landlords"], fill: "#fdcdac", tip: "xy" }))
+    ]
+});
+```
+
+<div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+    Enter a postcode below or click on a location on the map to display data about that postcode.<br>
+    Leave the field empty to display data for all of NSW.
+    ${postcodeInput}
+    ${resize((width) => postcodeMap)}
+</div>
+
+<div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+    ${bondRecipients}
+</div>
+
+<div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+    ${totalFunds}
+</div>
+
+<div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+    ${sumBonds}
+</div>
+
+```js
+// const bedrooms = view(Inputs.range([d3.min(postcode_lodgements, (d) => d.num_bedrooms), d3.max(postcode_lodgements, (d) => d.num_bedrooms)], {label: "Number of bedrooms", step: 1, value: 0}));
+```
+
+```js
+// const bedroom_rents = postcode_lodgements.filter(row => (row.num_bedrooms === bedrooms));
+//
+// display(Plot.plot({
+//     title: `Weekly rent of ${bedrooms} bedroom residences at time of bond lodgement for ${postcodeInput.value !== "" ? postcodeInput.value : "all NSW"}`,
+//     marginTop: 20,
+//     marginRight: 100,
+//     marginBottom: 50,
+//     marginLeft: 100,
+//     width: 1000,
+//     color: {
+//         scheme: "Cool",
+//         legend: true
+//     },
+//   
+//     x: {
+//         type: "time",
+//         label: "Date bond lodged"
+//     },
+//     y: {
+//         label: "Rent (AUD$)",
+//         grid: true
+//     },
+//     marks: [
+//         Plot.ruleY([0]),
+//         Plot.axisY({tickFormat: (x) => "$" + x.toLocaleString(), marginRight: 50}),
+//        
+//         Plot.hexgrid(),
+//         Plot.dot(bedroom_rents, Plot.hexbin({ fill: "count" }, { x: "date_lodged", y: "weekly_rent", interval: "day", tip: true }))
+//   
+//         // Plot.dotY(bedroom_rents, { y: "weekly_rent", x: "date_lodged", stroke: "#fdcdac", strokeOpacity: 0.6, tip: "xy"}),
+//         // Plot.linearRegressionY(bedroom_rents, { y: "weekly_rent", x: "date_lodged", stroke: "#b3e2cd" })
+//     ]
+// }));
+```
+
+
+
+```js
+// display(Plot.legend({
+//     color:{
+//         type:"categorical",
+//         domain: ["Tenants", "Landlords/agents"],
+//         range: ["white", "orange"]
+//     }
+// }));
+//
+// display(Plot.plot({
+//     marginTop: 20,
+//     marginRight: 100,
+//     marginBottom: 30,
+//     marginLeft: 100,
+//     width: 1000,
+// 
+//     title: "Rolling average bond kept over time by tenants and landlords",
+//     grid: true,
+//     x: { type: "time", label: "Date" },
+//     y: { label: "Bond kept (AUD$)" },
+//     marks: [
+//         Plot.ruleY([0]),
+//         Plot.axisY({tickFormat: (x) => "$" + x.toLocaleString()}),
+//     
+//         Plot.lineY(postcode_refunds, Plot.windowY({k: 28, reduce: "median"}, { tip: true, label: "Tenants", stroke: "white", y: "tenant_payment", x: "date_paid" })),
+//         Plot.lineY(postcode_refunds, Plot.windowY({k: 28, reduce: "median"}, { tip: true, label: "Landlords/agents", stroke: "orange", y: "agent_payment", x: "date_paid" }))
+//     ]
+// }));
 ```

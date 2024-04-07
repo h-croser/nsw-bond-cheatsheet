@@ -1,0 +1,6 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-coffee.css");
+
+summary {
+    cursor: pointer;
+}

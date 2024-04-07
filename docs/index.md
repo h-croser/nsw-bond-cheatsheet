@@ -1,12 +1,9 @@
 ---
-title: Facts
+title: Cheatsheet
 ---
 
-# Guide to keeping your bond
-
-Below are some steps you should take to ensure you keep your bond.
-
-## At the start and end of the tenancy
+# NSW Bond Cheatsheet
+## Steps to take to keep your bond
 
 <details>
 
@@ -25,10 +22,10 @@ If you are asked for a cash bond, you should instead suggest using RBO. A landlo
 
 <summary><strong>Obtain an accurate in-going and out-going condition report.</strong></summary>
 
-A condition report is a document that states the condition of the property's features at the beginning and end of the tenancy, as seen by tenant and landlord/agent. The condition report form can be found [here](https://www.fairtrading.nsw.gov.au/help-centre/forms#Residentialtenancyforms).
+A condition report is a document that states the condition of the property's features at the beginning and end of the tenancy, as seen by tenant and landlord/agent. The condition report form can be found [here](https://www.fairtrading.nsw.gov.au/help-centre/forms#Residentialtenancyforms, "Fair Trading forms").
 
 Condition reports are a requirement for tenancies and form an important piece of evidence in many bond disputes.<br>
-It's important that you carefully review the landlord/agent's report and disagree/comment where necessary.
+It's important that you carefully review the landlord/agent's report and disagree and comment where necessary.
 
 </details>
 <br>
@@ -63,20 +60,17 @@ By the end of the final inspection, the landlord/agent should either accept the 
 
 <details>
 
-<summary><strong>Claim your bond back proactively.</strong></summary>
+<summary><strong>Request your bond back proactively.</strong></summary>
 
-The bond claim can be submitted through [RBO](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/rental-bonds-online, "Rental Bonds Online") by either the tenant or the landlord/agent.
+The bond refund request can be submitted through [RBO](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/rental-bonds-online, "Rental Bonds Online") by either the tenant or the landlord/agent.
 
-- If the landlord/agent doesn't identify any damage, you should claim the entire bond through RBO as soon as the final inspection is complete. It is reasonable and correct to claim the bond back if the landlord/agent cannot identify claimable damage during the final inspection.<br>
+- If the landlord/agent doesn't identify any damage, you should request the entire bond through RBO as soon as the final inspection is complete. It is reasonable to request the bond back if the landlord/agent cannot identify claimable damage during the final inspection.<br>
 - If the landlord/agent states that there is damage and/or cause to withhold bond, or if they are unsure and will "get back to you", urge them to identify the damage and be specific. It _is_ reasonable for the landlord/agent to not know the cost of the damage (as this must be quoted by professionals), but it _isn't_ reasonable for them to refuse to identify the damage itself.
 
-You should ensure you've had a conversation with the landlord/agent before submitting the bond claim.<br>
-If there is a disagreement, you should make an effort to resolve it. If the disagreement cannot be resolved, you should claim the portion of the bond that you think is fair.
+If the landlord/agent is asking for a portion of your bond, but you disagree with their reasons, you should request the portion of the bond you think is fair as soon as possible. It is free to request a refund but there is a fee for countering a landlord's claim, i.e. if the landlord claims a portion of the bond you will need to pay a fee to refute this claim in front of the tribunal.
 
 </details>
 <br>
-
-## Throughout the tenancy
 
 <details>
 
@@ -88,12 +82,63 @@ If communication is done verbally, you should follow up with an email to the lan
 </details>
 <br>
 
-## Further information
+## Additional notes
 
-### Reasonable wear and tear
+<details>
 
-### Cleanliness
+<summary><strong>Reasons for landlords to claim bond</strong></summary>
 
+Fair Trading lists the following as the main reasons for landlords to claim a portion of your bond (there may be other valid reasons):
 
+- unpaid rent
+- the reasonable cost of repairing damage to the property that is beyond fair wear and tear
+- unpaid water usage charges, as long as the landlord requested payment within three months of receiving the bill
+- any 'break fee' or other charges payable as a result of the tenant breaking the tenancy agreement early
+- the reasonable cost of cleaning any part of the property not left reasonably clean, considering how clean the property was at the start of the tenancy
+- the reasonable cost of having the locks changed, or other security devices replaced, if the tenant doesn't return all keys and security devices they were given
 
-### Going to the tribunal
+</details>
+<br>
+
+<details>
+
+<summary><strong>Damage vs Fair wear and tear</strong></summary>
+
+Damage is the result of negligent, irresponsible or intentional actions by the tenant.<br>
+Fair wear and tear is the deterioration that occurs over time to the property through normal use.<br>
+
+Tenants are responsible for compensating the landlord for damage, but not fair wear and tear.
+
+Fair Trading provides these examples of damage and fair wear and tear:
+
+| Fair wear and tear                                                    | Damage                                                                        |
+|-----------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Faded curtains or frayed cords                                        | Missing or torn curtains                                                      |
+| Furniture indentations and traffic marks on the carpet                | Stains or burn marks on the carpet                                            |
+| Scuffed up wooden floors                                              | Badly scratched or gouged wooden floors                                       |
+| Faded, chipped or cracked paint                                       | Unapproved, poor quality paint job                                            |
+| Worn kitchen benchtop                                                 | Burns or cuts in bench top                                                    |
+| Loose hinges or handles on doors or windows and worn sliding tracks   | Broken glass                                                                  |
+| Water stains on carpet from rain through leaking roof or bad plumbing | Water stains on carpet caused by overflowing bath or indoor pot plants        |
+| Paint worn off wall near light switch                                 | Damage to paint caused by removing posters stuck with blu-tack or sticky tape |
+
+The East Area Tenants Service provides [a comprehensive list](https://eats.org.au/tenants) of examples of real cases in the tribunal of damage vs fair wear and tear.
+
+</details>
+<br>
+
+<details>
+
+<summary><strong>Cleanliness</strong></summary>
+
+Tenants are expected to leave the property as clean as when they moved in, not including fair wear and tear.<br>
+There is no obligation to have the property professionally cleaned, unless otherwise stated in the lease agreement. The most common reason for a professional clean to be warranted is when pets have been present, where the lease may require a steam-cleaning of carpet.
+
+</details>
+<br>
+
+## Resources
+
+- [Tenants' Union of NSW](https://www.tenants.org.au, "Tenants' Union of NSW")
+- [East Area Tenants Service](https://eats.org.au/tenants, "East Area Tenants Service")
+- [Fair Trading](https://www.fairtrading.nsw.gov.au/housing-and-property/renting, "Fair Trading renting")
