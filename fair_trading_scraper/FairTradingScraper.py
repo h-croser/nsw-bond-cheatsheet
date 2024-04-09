@@ -14,6 +14,8 @@ from tqdm import tqdm
 CACHE_DIR: str = join(dirname(abspath(__file__)), "fair_trading_cache")
 CACHE_MAP_RECORD: str = join(CACHE_DIR, "cache_map.txt")
 
+BASE_DATA_DIR = join(dirname(dirname(abspath(__file__))), 'docs', 'data')
+
 
 class FileCache:
     @staticmethod
@@ -165,7 +167,7 @@ class FairTradingScraper:
 
     @staticmethod
     def update_holdings(holdings_df: DataFrame):
-        holdings_df.to_csv('./holdings.csv', index=False)
+        holdings_df.to_csv(join(BASE_DATA_DIR, 'holdings.csv'), index=False)
 
     @staticmethod
     def update_lodgements(lodgements_df: DataFrame):
@@ -189,23 +191,15 @@ class FairTradingScraper:
         lodgements_df = lodgements_df[['date_lodged', 'postcode', 'num_bedrooms', 'weekly_rent']]
         lodgements_df = lodgements_df.dropna()
         lodgements_df = lodgements_df.astype({'postcode': int, 'num_bedrooms': int, 'weekly_rent': int})
-        # lodgements_df['average_rent'] = lodgements_df.groupby(['date_lodged', 'postcode'])['weekly_rent'].transform('mean')
-        # lodgements_df = lodgements_df[['date_lodged', 'postcode', 'num_bedrooms', 'average_rent']].drop_duplicates(['date_lodged', 'postcode'])
         lodgements_df = lodgements_df[['date_lodged', 'postcode', 'num_bedrooms', 'weekly_rent']]
 
-        lodgements_df.to_csv('./lodgements.csv', index=False)
-
-    @staticmethod
-    def update_refunds_optimised(refunds_df: DataFrame):
-        refunds_df = refunds_df[['date_paid', 'tenant_payment', 'agent_payment', 'postcode']]
-        refunds_df = refunds_df.groupby(['date_paid', 'postcode']).agg({'tenant_payment': 'sum', 'agent_payment': 'sum'}).reset_index()
-        refunds_df.to_csv('./refunds-optimised.csv', index=False)
+        lodgements_df.to_csv(join(BASE_DATA_DIR, 'lodgements.csv'), index=False)
 
     @staticmethod
     def update_refunds_totals(refunds_df: DataFrame):
         refunds_df = refunds_df[['tenant_payment', 'agent_payment', 'postcode']]
         refunds_df = refunds_df.groupby(['postcode']).agg({'tenant_payment': 'sum', 'agent_payment': 'sum'}).reset_index()
-        refunds_df.to_csv('./refunds-totals.csv', index=False)
+        refunds_df.to_csv(join(BASE_DATA_DIR, 'refunds-totals.csv'), index=False)
 
     @staticmethod
     def update_refunds_recipients(refunds_df: DataFrame):
@@ -213,24 +207,23 @@ class FairTradingScraper:
         portions_df.loc[:, 'landlord_portion_prebin'] = portions_df['agent_payment'] / (portions_df['agent_payment'] + portions_df['tenant_payment'])
         portions_df.loc[:, 'landlord_portion_binned'] = cut(portions_df['landlord_portion_prebin'], bins=3, labels=False, include_lowest=True)
         portions_df.loc[:, 'recipient'] = portions_df.loc[:, 'landlord_portion_binned'].map({0: 'Tenant', 1: 'Split', 2: 'Landlord'})
-        portions_df['bin_count'] = portions_df.groupby(['postcode', 'recipient']).transform('count')
+        portions_df['bin_count'] = portions_df.groupby(['postcode', 'recipient'])['postcode'].transform('count')
         portions_df.drop_duplicates(subset=['postcode', 'recipient'], inplace=True)
         portions_df = portions_df.loc[:, ['postcode', 'recipient', 'bin_count']]
         portions_df = portions_df.dropna()
-        portions_df.to_csv('./refunds-portions.csv', index=False)
+        portions_df.to_csv(join(BASE_DATA_DIR, 'refunds-portions.csv'), index=False)
 
     @staticmethod
     def update_all():
         print("Gathering models")
-        # holdings_df: DataFrame = FairTradingScraper.get_holdings_dataframe()
+        holdings_df: DataFrame = FairTradingScraper.get_holdings_dataframe()
         lodgements_df: DataFrame = FairTradingScraper.get_lodgement_dataframe()
-        # refunds_df: DataFrame = FairTradingScraper.get_refunds_dataframe()
+        refunds_df: DataFrame = FairTradingScraper.get_refunds_dataframe()
         print("Updating models...")
-        # FairTradingScraper.update_holdings(holdings_df)
+        FairTradingScraper.update_holdings(holdings_df)
         FairTradingScraper.update_lodgements(lodgements_df)
-        # FairTradingScraper.update_refunds_optimised(refunds_df)
-        # FairTradingScraper.update_refunds_totals(refunds_df)
-        # FairTradingScraper.update_refunds_recipients(refunds_df)
+        FairTradingScraper.update_refunds_totals(refunds_df)
+        FairTradingScraper.update_refunds_recipients(refunds_df)
         print("All models updated")
 
 
