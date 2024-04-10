@@ -21,7 +21,7 @@ jobs:
           cache: 'pip'
       - run: pip install -r fair_trading_scraper/requirements.txt
       - name: run FairTradingScraper
-        run: python FairTradingScraper.py
+        run: python fair_trading_scraper/FairTradingScraper.py
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
