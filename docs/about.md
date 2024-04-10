@@ -18,7 +18,7 @@ This site was written for the purpose of:
 
 This site was written by Hamish Croser. Please reach out if you have suggestions or corrections.
 
-Contact email - [placeholder@gmail.com](mailto:placeholder@gmail.com)
+Contact email - [nswbondcheatsheet@gmail.com](mailto:nswbondcheatsheet@gmail.com)
 <br>
 Github - <https://github.com/h-croser>
 
@@ -26,11 +26,17 @@ Github - <https://github.com/h-croser>
 
 ## Source code
 
-<https://github.com/h-croser/observable-bonds>
+<https://github.com/h-croser/nsw-bond-cheatsheet>
 
 <br>
 
 ## Information sources/acknowledgements
+
+---
+
+Observable Framework. (2024). Software library. https://observablehq.com/
+
+This site was built with Observable
 
 ---
 
