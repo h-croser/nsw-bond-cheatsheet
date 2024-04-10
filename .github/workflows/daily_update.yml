@@ -12,8 +12,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo content
+      - name: Checkout repo content
         uses: actions/checkout@v4
+      - name: Restore cached Fair Trading data
+        id: cache-fairtrading-data-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: fair_trading_scraper/fair_trading_cache/*
+          key: fairtrading-data
       - name: setup python
         uses: actions/setup-python@v5
         with:
@@ -22,6 +28,12 @@ jobs:
       - run: pip install -r fair_trading_scraper/requirements.txt
       - name: run FairTradingScraper
         run: python fair_trading_scraper/FairTradingScraper.py
+      - name: Save Primes
+        id: cache-fairtrading-data-save
+        uses: actions/cache/save@v4
+        with:
+          path: fair_trading_scraper/fair_trading_cache/*
+          key: ${{ steps.cache-fairtrading-data-restore.outputs.cache-primary-key }}
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
