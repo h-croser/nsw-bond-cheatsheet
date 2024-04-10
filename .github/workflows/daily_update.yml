@@ -28,7 +28,7 @@ jobs:
       - run: pip install -r fair_trading_scraper/requirements.txt
       - name: run FairTradingScraper
         run: python fair_trading_scraper/FairTradingScraper.py
-      - name: Save Primes
+      - name: Save Fair Trading data
         id: cache-fairtrading-data-save
         uses: actions/cache/save@v4
         with:
