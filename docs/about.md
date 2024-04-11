@@ -9,8 +9,8 @@ Welcome to the NSW Rental Bond Cheatsheet
 ## Purpose
 
 This site was written for the purpose of:
-1. informing renters in NSW of their tenancy rights - succinctly, not exhaustively
-2. providing visualisations of Rental Bonds Online data for greater transparency
+1. helping renters in NSW keep their bond
+2. providing greater transparency of Rental Bonds Online data
 
 <br>
 
