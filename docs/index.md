@@ -9,7 +9,7 @@ title: Cheatsheet
 
 <summary><strong>Don't give money directly to your landlord/agent. Keep it safe with Rental Bonds Online.</strong></summary>
 
-Register your bond with [Rental Bonds Online (RBO)](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/rental-bonds-online, "Rental Bonds Online"), a service offered by NSW Fair Trading.<br>
+Register your bond with [Rental Bonds Online (RBO)](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/rental-bonds-online "Rental Bonds Online"), a service offered by NSW Fair Trading.<br>
 RBO stores your bond money in escrow so that your landlord can only take your bond if a formal claim has been made (which you can contest).
 
 If you give bond money directly to your landlord/agent legally your bond rights still apply, but it is much easier for them to unlawfully take your bond.<br>
@@ -22,7 +22,7 @@ If you are asked for a cash bond, you should instead suggest using RBO. A landlo
 
 <summary><strong>Obtain an accurate in-going and out-going condition report.</strong></summary>
 
-A condition report is a document that states the condition of the property's features at the beginning and end of the tenancy, as seen by tenant and landlord/agent. The condition report form can be found [here](https://www.fairtrading.nsw.gov.au/help-centre/forms#Residentialtenancyforms, "Fair Trading forms").
+A condition report is a document that states the condition of the property's features at the beginning and end of the tenancy, as seen by tenant and landlord/agent. The condition report form can be found [here](https://www.fairtrading.nsw.gov.au/help-centre/forms#Residentialtenancyforms "Fair Trading forms").
 
 Condition reports are a requirement for tenancies and form an important piece of evidence in many bond disputes.<br>
 It's important that you carefully review the landlord/agent's report and disagree and comment where necessary.
@@ -62,7 +62,7 @@ By the end of the final inspection, the landlord/agent should either accept the 
 
 <summary><strong>Request your bond back proactively.</strong></summary>
 
-The bond refund request can be submitted through [RBO](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/rental-bonds-online, "Rental Bonds Online") by either the tenant or the landlord/agent.
+The bond refund request can be submitted through [RBO](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/rental-bonds-online "Rental Bonds Online") by either the tenant or the landlord/agent.
 
 - If the landlord/agent doesn't identify any damage, you should request the entire bond through RBO as soon as the final inspection is complete. It is reasonable to request the bond back if the landlord/agent cannot identify claimable damage during the final inspection.<br>
 - If the landlord/agent states that there is damage and/or cause to withhold bond, or if they are unsure and will "get back to you", urge them to identify the damage and be specific. It _is_ reasonable for the landlord/agent to not know the cost of the damage (as this must be quoted by professionals), but it _isn't_ reasonable for them to refuse to identify the damage itself.
@@ -139,6 +139,6 @@ There is no obligation to have the property professionally cleaned, unless other
 
 ## Resources
 
-- [Tenants' Union of NSW](https://www.tenants.org.au, "Tenants' Union of NSW")
-- [East Area Tenants Service](https://eats.org.au/tenants, "East Area Tenants Service")
-- [Fair Trading](https://www.fairtrading.nsw.gov.au/housing-and-property/renting, "Fair Trading renting")
+- [Tenants' Union of NSW](https://www.tenants.org.au "Tenants' Union of NSW")
+- [East Area Tenants Service](https://eats.org.au/tenants "East Area Tenants Service")
+- [Fair Trading](https://www.fairtrading.nsw.gov.au/housing-and-property/renting "Fair Trading renting")

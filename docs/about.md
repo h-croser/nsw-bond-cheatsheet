@@ -42,13 +42,13 @@ This site was built with Observable
 
 Tenants’ Union of NSW. (2024). Website. https://www.tenants.org.au/
 
-This website was used as a primary information source for the [Cheatsheet](./) page
+This website was used as a primary information source for the [Cheatsheet](/) page
 
 ---
 
 East Area Tenants Service. (2024). Website. https://eats.org.au
 
-This website was used as a primary information source for the [Cheatsheet](./) page
+This website was used as a primary information source for the [Cheatsheet](/) page
 
 ---
 
