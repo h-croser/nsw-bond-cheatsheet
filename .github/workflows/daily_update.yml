@@ -15,11 +15,11 @@ jobs:
       - name: Checkout repo content
         uses: actions/checkout@v4
       - name: Restore cached Fair Trading data
-        id: cache-fairtrading-data-restore
-        uses: actions/cache/restore@v4
+        id: cache-fairtrading-data
+        uses: actions/cache@v4
         with:
           path: fair_trading_scraper/fair_trading_cache/**
-          key: fairtrading-data-${{ hashFiles('fair_trading_scraper/fair_trading_cache/**') }}
+          key: ${{ runner.os }}-fairtrading-data
       - name: setup python
         uses: actions/setup-python@v5
         with:
@@ -28,12 +28,6 @@ jobs:
       - run: pip install -r fair_trading_scraper/requirements.txt
       - name: run FairTradingScraper
         run: python fair_trading_scraper/FairTradingScraper.py
-      - name: Save Fair Trading data
-        id: cache-fairtrading-data-save
-        uses: actions/cache/save@v4
-        with:
-          path: fair_trading_scraper/fair_trading_cache/*
-          key: fairtrading-data-${{ hashFiles('fair_trading_scraper/fair_trading_cache/**') }}
       - uses: actions/setup-node@v4
         with:
           node-version: 20
