@@ -4,7 +4,7 @@ title: About
 
 # About this site
 
-Welcome to NSW Bond Facts
+Welcome to the NSW Rental Bond Cheatsheet
 
 ## Purpose
 

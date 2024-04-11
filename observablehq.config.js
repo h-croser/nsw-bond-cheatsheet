@@ -1,5 +1,5 @@
 export default {
-    title: "NSW Bond Cheatsheet",
+    title: "NSW Rental Bond Cheatsheet",
 
     pages: [
         {name: "Cheatsheet", path: "/index"},

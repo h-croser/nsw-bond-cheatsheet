@@ -2,8 +2,8 @@
 title: Cheatsheet
 ---
 
-# NSW Bond Cheatsheet
-## Steps to take to keep your bond
+# NSW Rental Bond Cheatsheet
+## Steps to take to keep your rental bond
 
 <details>
 
