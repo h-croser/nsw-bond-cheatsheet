@@ -46,6 +46,7 @@ jobs:
         with:
           name: build-artifact
           path: dist
+      - run: ls dist/_file/data
 
   deploy:
     needs: build
