@@ -34,7 +34,6 @@ jobs:
         with:
           path: fair_trading_scraper/fair_trading_cache/*
           key: fairtrading-data-${{ hashFiles('fair_trading_scraper/fair_trading_cache/**') }}
-      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
