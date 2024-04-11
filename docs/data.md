@@ -1,6 +1,6 @@
 ---
 title: Data
-theme: [coffee, wide]
+theme: [coffee]
 toc: true
 ---
 
@@ -71,7 +71,6 @@ const bondRecipients = Plot.plot({
     marginRight: 20,
     marginBottom: 40,
     marginLeft: 100,
-    width: `${width}`,
     
     color: {
         type: "categorical",
@@ -102,7 +101,6 @@ const totalFunds = Plot.plot({
     marginRight: 20,
     marginBottom: 40,
     marginLeft: 100,
-    width: `${width}`,
 
     grid: true,
     x: {
@@ -128,7 +126,6 @@ const sumBonds = Plot.plot({
     marginRight: 40,
     marginBottom: 40,
     marginLeft: 100,
-    width: `${width}`,
 
     color: {
         type: "categorical",
@@ -136,37 +133,37 @@ const sumBonds = Plot.plot({
         range: ["#b3e2cd", "#fdcdac"],
         legend: true
     },
-  
+
     x: {
+        label: "Recipient"
+    },
+    y: {
         grid: true,
         label: "Bond kept (AUD$)"
     },
-    y: {
-        label: "Recipient"
-    },
     marks: [
-        Plot.axisX({tickFormat: (x) => "$" + x.toLocaleString()}),
-        Plot.barX(postcode_refunds_totals, Plot.groupZ({ x: "sum" }, { x: "tenant_payment", y: ["Tenants"], fill: "#b3e2cd", tip: "xy" })),
-        Plot.barX(postcode_refunds_totals, Plot.groupZ({ x: "sum" }, { x: "agent_payment", y: ["Landlords"], fill: "#fdcdac", tip: "xy" }))
+        Plot.axisY({tickFormat: (y) => "$" + y.toLocaleString()}),
+        Plot.barY(postcode_refunds_totals, Plot.groupZ({ y: "sum" }, { x: ["Tenants"], y: "tenant_payment", fill: "#b3e2cd", tip: "x" })),
+        Plot.barY(postcode_refunds_totals, Plot.groupZ({ y: "sum" }, { x: ["Landlords"], y: "agent_payment", fill: "#fdcdac", tip: "x" }))
     ]
 });
 ```
 
-<div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+<div class="card" >
     Enter a postcode below or click on a location on the map to display data about that postcode.<br>
     Leave the field empty to display data for all of NSW.
     ${postcodeInput}
     ${resize((width) => postcodeMap)}
 </div>
 
-<div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+<div class="card" >
     ${bondRecipients}
 </div>
 
-<div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+<div class="card" >
     ${totalFunds}
 </div>
 
-<div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+<div class="card" >
     ${sumBonds}
 </div>
