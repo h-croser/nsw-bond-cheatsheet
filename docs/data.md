@@ -5,11 +5,11 @@ toc: true
 ---
 
 # Bond Data
+## Improving access to NSW bond data
 
 ```js
 const nsw_state_outline = FileAttachment("./data/nsw_outline.json").json();
 const nsw_postcodes = FileAttachment("./data/nsw_postcodes.csv").csv({typed: true});
-const lodgements = FileAttachment("./data/lodgements.csv").csv({typed: true});
 const holdings = FileAttachment("./data/holdings.csv").csv({typed: true});
 const refunds_totals = FileAttachment("./data/refunds-totals.csv").csv({typed: true});
 const refunds_portions = FileAttachment("./data/refunds-portions.csv").csv({typed: true});
@@ -31,7 +31,6 @@ var postcode = view(postcodeInput, {marginBottom: 0, marginTop: 0});
 const curr_postcode = nsw_postcodes.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
 const postcodeStr = postcode !== "" ? "postcode " + postcode : "all NSW";
 
-const postcode_lodgements = lodgements.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
 const postcode_holdings = holdings.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
 const postcode_refunds_totals = refunds_totals.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
 const postcode_refunds_portions = refunds_portions.filter(row => ((postcode == "") || (row.postcode.toString() === postcode)));
@@ -167,3 +166,8 @@ const sumBonds = Plot.plot({
 <div class="card" >
     ${sumBonds}
 </div>
+<br>
+
+### Access the data
+
+See the [Access the data](/about#access-the-data) section on the about page.

@@ -3,8 +3,7 @@ title: About
 ---
 
 # About this site
-
-Welcome to the NSW Rental Bond Cheatsheet
+## Info about the NSW Rental Bond Cheatsheet
 
 ## Purpose
 
@@ -27,6 +26,28 @@ Github - <https://github.com/h-croser>
 ## Source code
 
 <https://github.com/h-croser/nsw-bond-cheatsheet>
+
+<br>
+
+## Access the data
+
+The data for this page was originally sourced from the Fair Trading [rental bond data website](https://www.fairtrading.nsw.gov.au/about-fair-trading/rental-bond-data).
+
+The original data has been transformed in order to reduce the download sizes and provide the visualisations. Download the transformed data below:
+
+- <a id="holdingsLink" download>Download holdings</a>
+- <a id="refundsTotalsLink" download>Download refunds totals</a>
+- <a id="refundsPortionsLink" download>Download refunds portions</a>
+
+```js
+const holdingsURL = await FileAttachment('./data/holdings.csv').url();
+const refundsTotalURL = await FileAttachment('./data/refunds-totals.csv').url();
+const refundsPortionsURL = await FileAttachment('./data/refunds-portions.csv').url();
+
+document.getElementById("holdingsLink").href = holdingsURL;
+document.getElementById("refundsTotalsLink").href = refundsTotalURL;
+document.getElementById("refundsPortionsLink").href = refundsPortionsURL;
+```
 
 <br>
 

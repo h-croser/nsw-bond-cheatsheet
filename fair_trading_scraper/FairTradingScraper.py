@@ -217,13 +217,12 @@ class FairTradingScraper:
 
     @staticmethod
     def update_all():
+        # Lodgements are currently unused
         print("Gathering models")
         holdings_df: DataFrame = FairTradingScraper.get_holdings_dataframe()
-        lodgements_df: DataFrame = FairTradingScraper.get_lodgement_dataframe()
         refunds_df: DataFrame = FairTradingScraper.get_refunds_dataframe()
         print("Updating models...")
         FairTradingScraper.update_holdings(holdings_df)
-        FairTradingScraper.update_lodgements(lodgements_df)
         FairTradingScraper.update_refunds_totals(refunds_df)
         FairTradingScraper.update_refunds_recipients(refunds_df)
         print("All models updated")
