@@ -18,8 +18,8 @@ jobs:
         id: cache-fairtrading-data-restore
         uses: actions/cache/restore@v4
         with:
-          path: fair_trading_scraper/fair_trading_cache/*
-          key: fairtrading-data
+          path: fair_trading_scraper/fair_trading_cache/**
+          key: fairtrading-data-${{ hashFiles('fair_trading_scraper/fair_trading_cache/**') }}
       - name: setup python
         uses: actions/setup-python@v5
         with:
@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: fair_trading_scraper/fair_trading_cache/*
-          key: ${{ steps.cache-fairtrading-data-restore.outputs.cache-primary-key }}
+          key: fairtrading-data-${{ hashFiles('fair_trading_scraper/fair_trading_cache/**') }}
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
@@ -42,7 +42,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifact
           path: dist
