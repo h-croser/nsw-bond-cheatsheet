@@ -25,7 +25,9 @@ class FileCache:
         cache_map_file: str = CACHE_MAP_RECORD
         try:
             open(cache_map_file)
+            print("Fair Trading cache found")
         except FileNotFoundError:
+            print("No Fair Trading cache found")
             open(cache_map_file, 'x')
         with open(cache_map_file) as f:
             lines = f.readlines()
