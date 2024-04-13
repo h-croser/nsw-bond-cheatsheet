@@ -5,7 +5,7 @@ URL="https://nswrentalbonds.info/"
 PAGES=("data" "about")
 PAGE_DATE="2024-04-13"
 FILE_PREFIX="_file/data/"
-FILES=("holdings.csv" "refunds-portions.csv" "refunds-totals.csv")
+FILES=("holdings*.csv" "refunds-portions*.csv" "refunds-totals*.csv")
 CURR_DATE=$(date +"%Y-%m-%d")
 CHANGE_FREQ="monthly"
 
@@ -36,8 +36,9 @@ done
 
 # Write file URLs
 for file in "${FILES[@]}"; do
+  filename=$(ls "${file}")
   echo "<url>"
-  echo " <loc>${URL}${FILE_PREFIX}${file}</loc>"
+  echo " <loc>${URL}${FILE_PREFIX}${filename}</loc>"
   echo " <lastmod>${CURR_DATE}</lastmod>"
   echo " <changefreq>${CHANGE_FREQ}</changefreq>"
   echo " <priority>0.5</priority>"
