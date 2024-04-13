@@ -64,8 +64,8 @@ postcodeMap.addEventListener("click", (event) => {
 
 ```js
 const bondRecipients = Plot.plot({
-    title: `Count of bond recipients for ${postcodeStr}`,
-    subtitle: "The total number of bonds by recipient since Jan 4th, 2021",
+    title: `In ${postcodeStr}, who received the bond at the end of the lease?`,
+    subtitle: "Recipients of total bond since Jan 4th, 2021",
     marginTop: 20,
     marginRight: 20,
     marginBottom: 40,
