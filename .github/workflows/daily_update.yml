@@ -35,13 +35,12 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Generate sitemap
-        run: ${PWD}/utils/build_sitemap.sh
+        run: bash utils/build_sitemap.sh
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: build-artifact
           path: dist
-      - run: ls dist/_file/data
 
   deploy:
     needs: build
