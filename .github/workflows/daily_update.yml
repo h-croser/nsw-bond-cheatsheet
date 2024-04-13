@@ -35,7 +35,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Generate sitemap
-        run: ${GITHUB_WORKSPACE}/utils/build_sitemap.sh
+        run: ${PWD}/utils/build_sitemap.sh
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
