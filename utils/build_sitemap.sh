@@ -10,7 +10,7 @@ CURR_DATE=$(date +"%Y-%m-%d")
 CHANGE_FREQ="monthly"
 
 # Create new sitemap
-exec 1> docs/sitemap.xml
+exec 1> sitemap.xml
 
 # Write head
 echo '<?xml version="1.0" encoding="UTF-8"?>'
