@@ -36,7 +36,7 @@ done
 
 # Write file URLs
 for file in "${FILES[@]}"; do
-  filename=$(ls "${file}")
+  filename=$(ls dist/_file/data/${file})
   echo "<url>"
   echo " <loc>${URL}${FILE_PREFIX}${filename}</loc>"
   echo " <lastmod>${CURR_DATE}</lastmod>"
