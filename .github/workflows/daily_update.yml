@@ -61,7 +61,7 @@ jobs:
       - name: Set up Pages
         uses: actions/configure-pages@v5
       - name: Generate sitemap
-        run: ./utils/build_sitemap.sh
+        run: ${PWD}/utils/build_sitemap.sh
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
