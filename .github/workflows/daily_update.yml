@@ -37,7 +37,7 @@ jobs:
       - name: Generate sitemap
         run: bash utils/build_sitemap.sh
       - name: Move sitemap file to dist
-        run: mv sitemap.xml dist/sitemap.xml
+        run: ls -R
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
