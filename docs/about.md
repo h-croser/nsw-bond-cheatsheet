@@ -45,8 +45,11 @@ const refundsTotalURL = await FileAttachment('./data/refunds-totals.csv').url();
 const refundsPortionsURL = await FileAttachment('./data/refunds-portions.csv').url();
 
 document.getElementById("holdingsLink").href = holdingsURL;
+document.getElementById("holdingsLink").download = "holdings.csv";
 document.getElementById("refundsTotalsLink").href = refundsTotalURL;
+document.getElementById("refundsTotalsLink").download = "refunds-totals.csv";
 document.getElementById("refundsPortionsLink").href = refundsPortionsURL;
+document.getElementById("refundsPortionsLink").download = "refunds-portions.csv";
 ```
 
 <br>
