@@ -1,5 +1,6 @@
 ---
 title: About
+theme: [coffee, parchment]
 ---
 
 # About this site

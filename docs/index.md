@@ -1,5 +1,6 @@
 ---
 title: Cheatsheet
+theme: [coffee, parchment]
 ---
 
 # NSW Rental Bond Cheatsheet

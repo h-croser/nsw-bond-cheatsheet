@@ -1,6 +1,6 @@
 ---
 title: Data
-theme: [coffee]
+theme: [coffee, parchment, alt]
 toc: true
 ---
 
@@ -46,7 +46,7 @@ const postcodeMap = Plot.plot({
     },
     marks: [
         Plot.geo(nsw_state_outline),
-        Plot.dot(curr_postcode, {x: 'long', y: 'lat', r: 1, fill: '#fdcdac', tip: true, title: (d) => `Postcode: ${d.postcode} \nLocality: ${d.locality}`}),
+        Plot.dot(curr_postcode, {x: 'long', y: 'lat', r: 1, fill: 'var(--theme-foreground-focus)', tip: true, title: (d) => `Postcode: ${d.postcode} \nLocality: ${d.locality}`}),
         Plot.dot(curr_postcode, Plot.pointer({x: "long", y: "lat", fill: "#b3e2cd", r: 3}))
     ]
 });
@@ -100,7 +100,7 @@ const totalFunds = Plot.plot({
     marginRight: 20,
     marginBottom: 40,
     marginLeft: 100,
-
+    
     grid: true,
     x: {
         type: "time",
@@ -110,9 +110,10 @@ const totalFunds = Plot.plot({
         label: "Bonds held"
     },
     marks: [
-        Plot.lineY(postcode_holdings, Plot.groupX({ y: "sum" }, { x: "date", y: "bonds_held", stroke: "#fdcdac" })),
-        Plot.areaY(postcode_holdings, Plot.groupX({ y: "sum" }, { x: "date", y: "bonds_held", fill: "#fdcdac", fillOpacity: 0.1 })),
-        Plot.dotY(postcode_holdings, Plot.groupX({ y: "sum" }, { x: "date", y: "bonds_held", fill: "#ffffff", tip: "x" }))
+        Plot.ruleY([0]),
+        Plot.lineY(postcode_holdings, Plot.groupX({ y: "sum" }, { x: "date", y: "bonds_held", stroke: "var(--theme-foreground-focus)" })),
+        Plot.areaY(postcode_holdings, Plot.groupX({ y: "sum" }, { x: "date", y: "bonds_held", fill: "var(--theme-foreground-focus)", fillOpacity: 0.1 })),
+        Plot.dotY(postcode_holdings, Plot.groupX({ y: "sum" }, { x: "date", y: "bonds_held", fill: "var(--theme-foreground)", stroke: "var(--theme-background-alt)", tip: "x" }))
     ]
 });
 ```
@@ -141,6 +142,7 @@ const sumBonds = Plot.plot({
         label: "Bond kept (AUD$)"
     },
     marks: [
+        Plot.ruleY([0]),
         Plot.axisY({tickFormat: (y) => "$" + y.toLocaleString()}),
         Plot.barY(postcode_refunds_totals, Plot.groupZ({ y: "sum" }, { x: ["Tenants"], y: "tenant_payment", fill: "#b3e2cd", tip: "x" })),
         Plot.barY(postcode_refunds_totals, Plot.groupZ({ y: "sum" }, { x: ["Landlords"], y: "agent_payment", fill: "#fdcdac", tip: "x" }))
