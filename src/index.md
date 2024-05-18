@@ -3,8 +3,17 @@ title: Cheatsheet
 theme: [coffee, parchment]
 ---
 
+<style>
+summary {
+    cursor: pointer;
+}
+</style>
+
 # NSW Rental Bond Cheatsheet
-## Steps to take to keep your rental bond
+
+**_Steps to take to keep your rental bond_**
+
+<br>
 
 <details>
 
@@ -13,8 +22,18 @@ theme: [coffee, parchment]
 Register your bond with [Rental Bonds Online (RBO)](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/rental-bonds-online "Rental Bonds Online"), a service offered by NSW Fair Trading.<br>
 RBO stores your bond money in escrow so that your landlord can only take your bond if a formal claim has been made (which you can contest).
 
-If you give bond money directly to your landlord/agent legally your bond rights still apply, but it is much easier for them to unlawfully take your bond.<br>
-If you are asked for a cash bond, you should instead suggest using RBO. A landlord/agent refusing to lodge bond through RBO should be treated with suspicion and ideally avoided.
+If you give bond money directly to your landlord or agent legally your bond rights still legally apply, but it is much easier for them to unlawfully take your bond.<br>
+If you are asked to pay your bond in cash directly to a landlord or agent, you should instead suggest using RBO. A landlord/agent refusing to lodge bond through RBO should be treated with suspicion and ideally avoided.
+
+</details>
+<br>
+
+<details>
+
+<summary><strong>Communicate in writing wherever possible</strong></summary>
+
+Communications throughout the tenancy can be important evidence during a bond dispute. Emails are ideal, as they automatically record date, time, and recipients, and they are also stored on a searchable server.<br>
+If communication is done verbally, you should follow up with an email to the landlord/agent confirming the notable things discussed. **Note:** NSW law requires that both parties consent to an audio recording of a conversation.
 
 </details>
 <br>
@@ -26,7 +45,7 @@ If you are asked for a cash bond, you should instead suggest using RBO. A landlo
 A condition report is a document that states the condition of the property's features at the beginning and end of the tenancy, as seen by tenant and landlord/agent. The condition report form can be found [here](https://www.fairtrading.nsw.gov.au/help-centre/forms#Residentialtenancyforms "Fair Trading forms").
 
 Condition reports are a requirement for tenancies and form an important piece of evidence in many bond disputes.<br>
-It's important that you carefully review the landlord/agent's report and disagree and comment where necessary.
+It's important that you carefully review the landlord/agent's report and disagree and comment where necessary. Ensure you document your disagreements both in writing and with photographs.
 
 </details>
 <br>
@@ -50,11 +69,12 @@ Photos are an important piece of evidence in many bond disputes, and you should 
 
 The final inspection is a walk-through of the property by the landlord/agent to ensure the property is left in a similar condition to when the tenancy began.<br>
 The out-going condition report should be filled based on the final inspection. Ideally, your photos of the property will be taken on the same date as the final inspection, or as close to it as possible.<br>
-The property should be empty and clean by the final inspection.<br>
-**Note:** there is no obligation to have the property professionally cleaned, unless otherwise stated in the lease agreement. The standard expectation is for the property to be as clean as it was at the beginning of the tenancy, with reasonable wear and tear.
 
 The landlord/agent must give you an opportunity to attend the final inspection - and you should attend.<br>
 By the end of the final inspection, the landlord/agent should either accept the property in its condition or identify the damage they believe the property has sustained.<br>
+
+The property should be empty and clean by the final inspection.<br>
+**Note: there is no obligation to have the property professionally cleaned, unless otherwise stated in the lease agreement. The standard expectation is for the property to be as clean as it was at the beginning of the tenancy, with reasonable wear and tear.**
 
 </details>
 <br>
@@ -73,23 +93,13 @@ If the landlord/agent is asking for a portion of your bond, but you disagree wit
 </details>
 <br>
 
-<details>
-
-<summary><strong>Communicate in writing wherever possible</strong></summary>
-
-Communications throughout the tenancy can be important evidence during a bond dispute. Emails are ideal, as they automatically record date, time, and recipients, and they are also stored on a searchable server.<br>
-If communication is done verbally, you should follow up with an email to the landlord/agent confirming the notable things discussed. **Note:** NSW law requires that both parties consent to an audio recording of a conversation.
-
-</details>
-<br>
-
 ## Additional notes
 
 <details>
 
 <summary><strong>Reasons for landlords to claim bond</strong></summary>
 
-Fair Trading lists the following as the main reasons for landlords to claim a portion of your bond (there may be other valid reasons):
+Fair Trading [lists the following](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/ending-a-tenancy#Movingout "Fair Trading Moving Out") as the main reasons for landlords to claim a portion of your bond (there may be other valid reasons):
 
 - unpaid rent
 - the reasonable cost of repairing damage to the property that is beyond fair wear and tear
@@ -110,7 +120,7 @@ Fair wear and tear is the deterioration that occurs over time to the property th
 
 Tenants are responsible for compensating the landlord for damage, but not fair wear and tear.
 
-Fair Trading provides these examples of damage and fair wear and tear:
+Fair Trading [provides these examples](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/ending-a-tenancy#Movingout "Fair Trading Moving Out") of damage and fair wear and tear:
 
 | Fair wear and tear                                                    | Damage                                                                        |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------------------|

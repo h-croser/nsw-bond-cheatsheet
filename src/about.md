@@ -4,7 +4,10 @@ theme: [coffee, parchment]
 ---
 
 # About this site
-## Info about the NSW Rental Bond Cheatsheet
+
+**_Info about the NSW Rental Bond Cheatsheet_**
+
+<br>
 
 ## Purpose
 
@@ -55,13 +58,7 @@ document.getElementById("refundsPortionsLink").download = "refunds-portions.csv"
 
 <br>
 
-## Information sources/acknowledgements
-
----
-
-Observable Framework. (2024). Software library. https://observablehq.com/
-
-This site was built with Observable
+## Information sources
 
 ---
 
@@ -95,6 +92,22 @@ This dataset of NSW state boundaries was used to create a map of NSW for data vi
 
 ---
 
+## Acknowledgements
+
+---
+
+Observable Framework. (2024). Software library. https://observablehq.com/
+
+This site was built with Observable
+
+---
+
 M Bloch. (2024). Mapshaper. Software. https://mapshaper.org/, https://github.com/mbloch/mapshaper
 
 This tool was used to simplify and convert the NSW state boundary shape file.
+
+---
+
+Z Agius. Site reviewer. https://zacagius.cargo.site/
+
+Zac provided valuable feedback on the usability and presentation of this site

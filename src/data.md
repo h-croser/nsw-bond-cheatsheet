@@ -5,7 +5,10 @@ toc: true
 ---
 
 # Bond Data
-## Improving access to NSW bond data
+
+**_Improving access to NSW bond data for tenants across NSW_**
+
+<br>
 
 ```js
 const nsw_state_outline = FileAttachment("./data/nsw_outline.json").json();
@@ -14,7 +17,6 @@ const holdings = FileAttachment("./data/holdings.csv").csv({typed: true});
 const refunds_totals = FileAttachment("./data/refunds-totals.csv").csv({typed: true});
 const refunds_portions = FileAttachment("./data/refunds-portions.csv").csv({typed: true});
 ```
-
 
 ```js
 var postcodeInput = Inputs.text({
@@ -63,9 +65,41 @@ postcodeMap.addEventListener("click", (event) => {
 ```
 
 ```js
+const sumBonds = Plot.plot({
+    title: `In ${postcodeInput.value !== "" ? postcodeInput.value : "all NSW"}, how much bond money has been paid to landlords vs tenants?`,
+    subtitle: "The sum of all bond funds returned to tenants or given to landlords after the bond is settled, since January, 2021",
+    marginTop: 20,
+    marginRight: 40,
+    marginBottom: 40,
+    marginLeft: 100,
+
+    color: {
+        type: "categorical",
+        domain: ["Landlords", "Tenants"],
+        range: ["#fdcdac", "#b3e2cd"],
+        legend: true
+    },
+
+    x: {
+        label: "Recipient"
+    },
+    y: {
+        label: "Bond kept (AUD$)",
+        grid: true
+    },
+    marks: [
+        Plot.ruleY([0]),
+        Plot.axisY({tickFormat: (y) => "$" + y.toLocaleString()}),
+        Plot.barY(postcode_refunds_totals, Plot.groupZ({ y: "sum"}, { x: ["Tenants"], y: "tenant_payment", fill: "#b3e2cd", tip: "x"  })),
+        Plot.barY(postcode_refunds_totals, Plot.groupZ({ y: "sum" }, { x: ["Landlords"], y: "agent_payment", fill: "#fdcdac", tip: "x" }))
+    ]
+});
+```
+
+```js
 const bondRecipients = Plot.plot({
     title: `In ${postcodeStr}, who received the bond at the end of the lease?`,
-    subtitle: "Recipients of total bond since Jan 4th, 2021",
+    subtitle: "Recipients of total bond since January, 2021",
     marginTop: 20,
     marginRight: 20,
     marginBottom: 40,
@@ -73,8 +107,7 @@ const bondRecipients = Plot.plot({
     
     color: {
         type: "categorical",
-        domain: ["Tenant", "Split", "Landlord"],
-        range: ["#b3e2cd", "#ffffff", "#fdcdac"],
+        range: ["#fdcdac", "#ffffff", "#b3e2cd"],
         legend: true
     },
 
@@ -104,7 +137,8 @@ const totalFunds = Plot.plot({
     grid: true,
     x: {
         type: "time",
-        label: "Date of recording"
+        label: "Date of recording",
+        labelAnchor: "center"
     },
     y: {
         label: "Bonds held"
@@ -118,43 +152,17 @@ const totalFunds = Plot.plot({
 });
 ```
 
-```js
-const sumBonds = Plot.plot({
-    title: `Cumulative bond funds kept by tenants and landlords for ${postcodeInput.value !== "" ? postcodeInput.value : "all NSW"}`,
-    subtitle: "The sum of all bond funds kept by tenants and landlords after the bond is settled, since Jan 4th, 2021",
-    marginTop: 20,
-    marginRight: 40,
-    marginBottom: 40,
-    marginLeft: 100,
-
-    color: {
-        type: "categorical",
-        domain: ["Tenants", "Landlords"],
-        range: ["#b3e2cd", "#fdcdac"],
-        legend: true
-    },
-
-    x: {
-        label: "Recipient"
-    },
-    y: {
-        grid: true,
-        label: "Bond kept (AUD$)"
-    },
-    marks: [
-        Plot.ruleY([0]),
-        Plot.axisY({tickFormat: (y) => "$" + y.toLocaleString()}),
-        Plot.barY(postcode_refunds_totals, Plot.groupZ({ y: "sum" }, { x: ["Tenants"], y: "tenant_payment", fill: "#b3e2cd", tip: "x" })),
-        Plot.barY(postcode_refunds_totals, Plot.groupZ({ y: "sum" }, { x: ["Landlords"], y: "agent_payment", fill: "#fdcdac", tip: "x" }))
-    ]
-});
-```
-
 <div class="card" >
+    <p>
     Enter a postcode below or click on a location on the map to display data about that postcode.<br>
     Leave the field empty to display data for all of NSW.
+    </p>
     ${postcodeInput}
     ${resize((width) => postcodeMap)}
+</div>
+
+<div class="card" >
+    ${sumBonds}
 </div>
 
 <div class="card" >
@@ -163,10 +171,6 @@ const sumBonds = Plot.plot({
 
 <div class="card" >
     ${totalFunds}
-</div>
-
-<div class="card" >
-    ${sumBonds}
 </div>
 <br>
 

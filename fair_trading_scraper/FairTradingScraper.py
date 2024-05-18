@@ -14,7 +14,7 @@ from tqdm import tqdm
 CACHE_DIR: str = join(dirname(abspath(__file__)), "fair_trading_cache")
 CACHE_MAP_RECORD: str = join(CACHE_DIR, "cache_map.txt")
 
-BASE_DATA_DIR = join(dirname(dirname(abspath(__file__))), 'docs', 'data')
+BASE_DATA_DIR = join(dirname(dirname(abspath(__file__))), 'src', 'data')
 
 
 class FileCache:
