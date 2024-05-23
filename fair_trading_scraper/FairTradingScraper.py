@@ -65,18 +65,18 @@ class FileCache:
 
 
 class FairTradingScraper:
-    DATA_LIST_URL: str = "https://www.fairtrading.nsw.gov.au/about-fair-trading/rental-bond-data"
-    DATA_LINK_PREFIX: str = "https://www.fairtrading.nsw.gov.au/__data/assets/excel_doc/"
+    DATA_ROOT_PATH: str = "https://www.nsw.gov.au"
+    DATA_LIST_URL: str = DATA_ROOT_PATH + "/housing-and-construction/rental-forms-surveys-and-data/rental-bond-data"
+    DATA_LINK_PREFIX: str = "/sites/default/files/"
 
     @staticmethod
-    def _get_links_from_table(grandparent_id: str, parent_tag: str) -> list[str]:
+    def _get_links_from_table(search_term: str) -> list[str]:
         response: Response = requests.get(FairTradingScraper.DATA_LIST_URL)
         soup = BeautifulSoup(response.text, "html.parser")
+        url_pattern = re.compile(f'{FairTradingScraper.DATA_LINK_PREFIX}.*{search_term}((?!year).)*\.xlsx', flags=re.I)
 
-        link_tags: ResultSet = soup.find(id=grandparent_id).find('div').find(parent_tag).find_all('a')
-        links: list[str] = [a_tag.get('href') for a_tag in link_tags]
-        url_pattern = re.compile(f'{FairTradingScraper.DATA_LINK_PREFIX}(?!.*year).*', flags=re.I)
-        matching_links: list[str] = [link for link in links if re.match(url_pattern, link)]
+        link_tags: ResultSet = soup.find_all('a', href=True, recursive=True)
+        matching_links: list[str] = [FairTradingScraper.DATA_ROOT_PATH + a_tag['href'] for a_tag in link_tags if url_pattern.search(a_tag['href'])]
 
         return matching_links
 
@@ -110,11 +110,11 @@ class FairTradingScraper:
 
     @staticmethod
     def get_lodgement_dataframe() -> DataFrame:
-        lodgement_links: list[str] = FairTradingScraper._get_links_from_table('panel1', 'table')
+        lodgement_links: list[str] = FairTradingScraper._get_links_from_table('lodgement')
 
         lodgement_df: DataFrame = FairTradingScraper._get_df_from_links(lodgement_links, "lodgements")
         column_replace = {
-            'Lodgement Date': 'date_lodged',
+            'Lodgement Date': 'date',
             'Postcode': 'postcode',
             'Dwelling Type': 'dwelling_type',
             'Bedrooms': 'num_bedrooms',
@@ -126,7 +126,7 @@ class FairTradingScraper:
 
     @staticmethod
     def get_refunds_dataframe() -> DataFrame:
-        refunds_links: list[str] = FairTradingScraper._get_links_from_table('panel2', 'table')
+        refunds_links: list[str] = FairTradingScraper._get_links_from_table('refund')
 
         refunds_df = FairTradingScraper._get_df_from_links(refunds_links, "refunds")
         column_replace = {
@@ -144,7 +144,7 @@ class FairTradingScraper:
 
     @staticmethod
     def get_holdings_dataframe() -> DataFrame:
-        holdings_links: list[str] = FairTradingScraper._get_links_from_table('panel3', 'ul')
+        holdings_links: list[str] = FairTradingScraper._get_links_from_table('held')
         month_pattern = re.compile(r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s*\d{4}\b', flags=re.I)
 
         complete_df: DataFrame = DataFrame()
@@ -170,9 +170,10 @@ class FairTradingScraper:
     @staticmethod
     def update_holdings(holdings_df: DataFrame):
         holdings_df.to_csv(join(BASE_DATA_DIR, 'holdings.csv'), index=False)
+        holdings_df.to_parquet(join(BASE_DATA_DIR, 'holdings.parquet'), index=False)
 
     @staticmethod
-    def update_lodgements(lodgements_df: DataFrame):
+    def update_rents(lodgements_df: DataFrame):
         def read_row(row: Series):
             try:
                 row['num_bedrooms'] = int(row['num_bedrooms'])
@@ -183,25 +184,50 @@ class FairTradingScraper:
             except ValueError:
                 return
             try:
-                row['date_lodged'] = datetime.fromisoformat(str(row['date_lodged'])).date()
-            except ValueError:
+                row['date'] = str(row['date'])[:8] + '01'
+            except (ValueError, IndexError):
                 return
 
             return row
 
         lodgements_df = lodgements_df.apply(read_row, axis=1)
-        lodgements_df = lodgements_df[['date_lodged', 'postcode', 'num_bedrooms', 'weekly_rent']]
         lodgements_df = lodgements_df.dropna()
-        lodgements_df = lodgements_df.astype({'postcode': int, 'num_bedrooms': int, 'weekly_rent': int})
-        lodgements_df = lodgements_df[['date_lodged', 'postcode', 'num_bedrooms', 'weekly_rent']]
+        lodgements_df = lodgements_df.astype({'date': str, 'postcode': int, 'weekly_rent': int, 'num_bedrooms': int})
+        lodgements_df = lodgements_df[['date', 'postcode', 'weekly_rent', 'num_bedrooms']]
 
-        lodgements_df.to_csv(join(BASE_DATA_DIR, 'lodgements.csv'), index=False)
+        postcode_median_rents_df: DataFrame = lodgements_df.groupby(['date', 'postcode']).agg(
+            median_rent=('weekly_rent', 'median'),
+            data_points=('weekly_rent', 'size')
+        ).reset_index()
+        all_postcodes_median_rents_df: DataFrame = lodgements_df.groupby('date').agg(
+            median_rent=('weekly_rent', 'median'),
+            data_points=('weekly_rent', 'size')
+        ).reset_index()
+        all_postcodes_median_rents_df['postcode'] = 0
+        median_rents_df: DataFrame = concat([postcode_median_rents_df, all_postcodes_median_rents_df], ignore_index=True)
+
+        postcode_bedrooms_median_rents_df: DataFrame = lodgements_df.groupby(['date', 'postcode', 'num_bedrooms']).agg(
+            median_rent=('weekly_rent', 'median'),
+            data_points=('weekly_rent', 'size')
+        ).reset_index()
+        all_postcodes_bedrooms_median_rents_df: DataFrame = lodgements_df.groupby(['date', 'num_bedrooms']).agg(
+            median_rent=('weekly_rent', 'median'),
+            data_points=('weekly_rent', 'size')
+        ).reset_index()
+        all_postcodes_bedrooms_median_rents_df['postcode'] = 0
+        bedrooms_median_rents_df: DataFrame = concat([postcode_bedrooms_median_rents_df, all_postcodes_bedrooms_median_rents_df], ignore_index=True)
+
+        median_rents_df.to_csv(join(BASE_DATA_DIR, 'median-rents.csv'), index=False)
+        median_rents_df.to_parquet(join(BASE_DATA_DIR, 'median-rents.parquet'), index=False)
+        bedrooms_median_rents_df.to_csv(join(BASE_DATA_DIR, 'median-rents-bedrooms.csv'), index=False)
+        bedrooms_median_rents_df.to_parquet(join(BASE_DATA_DIR, 'median-rents-bedrooms.parquet'), index=False)
 
     @staticmethod
     def update_refunds_totals(refunds_df: DataFrame):
         refunds_df = refunds_df[['tenant_payment', 'agent_payment', 'postcode']]
         refunds_df = refunds_df.groupby(['postcode']).agg({'tenant_payment': 'sum', 'agent_payment': 'sum'}).reset_index()
         refunds_df.to_csv(join(BASE_DATA_DIR, 'refunds-totals.csv'), index=False)
+        refunds_df.to_parquet(join(BASE_DATA_DIR, 'refunds-totals.parquet'), index=False)
 
     @staticmethod
     def update_refunds_recipients(refunds_df: DataFrame):
@@ -214,6 +240,7 @@ class FairTradingScraper:
         portions_df = portions_df.loc[:, ['postcode', 'recipient', 'bin_count']]
         portions_df = portions_df.dropna()
         portions_df.to_csv(join(BASE_DATA_DIR, 'refunds-portions.csv'), index=False)
+        portions_df.to_parquet(join(BASE_DATA_DIR, 'refunds-portions.parquet'), index=False)
 
     @staticmethod
     def update_all():
@@ -221,10 +248,12 @@ class FairTradingScraper:
         print("Gathering models")
         holdings_df: DataFrame = FairTradingScraper.get_holdings_dataframe()
         refunds_df: DataFrame = FairTradingScraper.get_refunds_dataframe()
+        lodgements_df: DataFrame = FairTradingScraper.get_lodgement_dataframe()
         print("Updating models...")
         FairTradingScraper.update_holdings(holdings_df)
         FairTradingScraper.update_refunds_totals(refunds_df)
         FairTradingScraper.update_refunds_recipients(refunds_df)
+        FairTradingScraper.update_rents(lodgements_df)
         print("All models updated")
 
 

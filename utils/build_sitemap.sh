@@ -2,10 +2,10 @@
 
 
 URL="https://nswrentalbonds.info/"
-PAGES=("data" "about")
-PAGE_DATE="2024-04-13"
+PAGES=("bond-data" "rent-data" "about")
+PAGE_DATE="2024-05-23"
 FILE_PREFIX="_file/data/"
-FILES=("holdings*.csv" "refunds-portions*.csv" "refunds-totals*.csv")
+FILES=("holdings*.csv" "refunds-portions*.csv" "refunds-totals*.csv" "median-rents*.csv" "median-rents-bedrooms*.csv")
 CURR_DATE=$(date +"%Y-%m-%d")
 CHANGE_FREQ="monthly"
 

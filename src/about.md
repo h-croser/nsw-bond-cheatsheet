@@ -42,11 +42,15 @@ The original data has been transformed in order to reduce the download sizes and
 - <a id="holdingsLink" download>Download holdings</a>
 - <a id="refundsTotalsLink" download>Download refunds totals</a>
 - <a id="refundsPortionsLink" download>Download refunds portions</a>
+- <a id="allMedianRentsLink" download>Download all median rents</a>
+- <a id="bedroomMedianRentsLink" download>Download median rents by bedroom</a>
 
 ```js
 const holdingsURL = await FileAttachment('./data/holdings.csv').url();
 const refundsTotalURL = await FileAttachment('./data/refunds-totals.csv').url();
 const refundsPortionsURL = await FileAttachment('./data/refunds-portions.csv').url();
+const allMedianRentsURL = await FileAttachment('./data/median-rents.csv').url();
+const bedroomMedianRentsURL = await FileAttachment('./data/median-rents-bedrooms.csv').url();
 
 document.getElementById("holdingsLink").href = holdingsURL;
 document.getElementById("holdingsLink").download = "holdings.csv";
@@ -54,6 +58,10 @@ document.getElementById("refundsTotalsLink").href = refundsTotalURL;
 document.getElementById("refundsTotalsLink").download = "refunds-totals.csv";
 document.getElementById("refundsPortionsLink").href = refundsPortionsURL;
 document.getElementById("refundsPortionsLink").download = "refunds-portions.csv";
+document.getElementById("allMedianRentsLink").href = allMedianRentsURL;
+document.getElementById("allMedianRentsLink").download = "median-rents.csv";
+document.getElementById("bedroomMedianRentsLink").href = bedroomMedianRentsURL;
+document.getElementById("bedroomMedianRentsLink").download = "median-rents-bedrooms.csv";
 ```
 
 <br>
