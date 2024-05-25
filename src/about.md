@@ -35,7 +35,7 @@ Github - <https://github.com/h-croser>
 
 ## Access the data
 
-The data for this page was originally sourced from the Fair Trading [rental bond data website](https://www.fairtrading.nsw.gov.au/about-fair-trading/rental-bond-data).
+The data for this page was originally sourced from the Fair Trading [rental bond data website](https://www.nsw.gov.au/housing-and-construction/rental-forms-surveys-and-data/rental-bond-data).
 
 The original data has been transformed in order to reduce the download sizes and provide the visualisations. Download the transformed data below:
 
@@ -70,33 +70,33 @@ document.getElementById("bedroomMedianRentsLink").download = "median-rents-bedro
 
 ---
 
-Tenants’ Union of NSW. (2024). Website. https://www.tenants.org.au/
+Tenants’ Union of NSW. (2024). Website. <https://www.tenants.org.au>
 
 This website was used as a primary information source for the [Cheatsheet](/) page
 
 ---
 
-East Area Tenants Service. (2024). Website. https://eats.org.au
+East Area Tenants Service. (2024). Website. <https://eats.org.au>
 
 This website was used as a primary information source for the [Cheatsheet](/) page
 
 ---
 
-Fair Trading NSW. (2024). Website. https://www.fairtrading.nsw.gov.au/about-fair-trading/rental-bond-data
+Rental bond data. (2024). Website. <https://www.nsw.gov.au/housing-and-construction/rental-forms-surveys-and-data/rental-bond-data>
 
-This website was used as the source of all rental bonds data for the [Data](./data) page.
+This website was used as the source of all data for the [Bond Data](./bond-data) and [Rent Data](./rent-data) pages.
 
 ---
 
 M Proctor. (2024). Australian Postcodes. GitHub repository. <https://github.com/matthewproctor/australianpostcodes>
 
-This dataset of Australian postcodes was used to create a map of postcode locations for a data visualisation on the [Data](./data) page.
+This dataset of Australian postcodes was used to create a map of postcode locations for a data visualisation on the [Bond Data](./bond-data) and [Rent Data](./rent-data) pages.
 
 ---
 
 Australian Government - Department of Industry, Science and Resources. (2022). NSW State Boundary - Geoscape Administrative Boundaries. Dataset. <https://data.gov.au/data/dataset/nsw-state-boundary>
 
-This dataset of NSW state boundaries was used to create a map of NSW for data visualisation on the [Data](./data) page.
+This dataset of NSW state boundaries was used to create a map of NSW for data visualisation on the [Bond Data](./bond-data) and [Rent Data](./rent-data) pages.
 
 ---
 
@@ -104,18 +104,18 @@ This dataset of NSW state boundaries was used to create a map of NSW for data vi
 
 ---
 
-Observable Framework. (2024). Software library. https://observablehq.com/
+Observable Framework. (2024). Software library. <https://observablehq.com/framework>
 
 This site was built with Observable
 
 ---
 
-M Bloch. (2024). Mapshaper. Software. https://mapshaper.org/, https://github.com/mbloch/mapshaper
+M Bloch. (2024). Mapshaper. Software. <https://mapshaper.org/>, <https://github.com/mbloch/mapshaper>
 
 This tool was used to simplify and convert the NSW state boundary shape file.
 
 ---
 
-Z Agius. Site reviewer. https://zacagius.cargo.site/
+Zac Agius. Site reviewer. <https://zacagius.cargo.site>
 
 Zac provided valuable feedback on the usability and presentation of this site

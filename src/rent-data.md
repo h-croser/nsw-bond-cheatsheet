@@ -7,8 +7,9 @@ theme: [coffee, parchment]
 
 **_Rental price data for NSW_**
 
-The following visualisation has been created using data scraped from the Rental Bonds Online site.<br>
-The data is published monthly and covers postcodes within NSW.
+The following has been created using data scraped from the Rental Bonds Online site.<br>
+The data is published monthly and covers postcodes within NSW.<br>
+
 
 ```js
 const nswStateOutline = FileAttachment("./data/nsw_outline.json").json();
@@ -142,6 +143,8 @@ const rentByBedroom = Plot.plot({
     <br><br>
     ${rentByBedroom}
 </div>
+<p><strong>Data note:</strong> The rent data was recorded when a new bond was lodged, and so is missing data points of rent changes where bond was unchanged (i.e. rent raised during tenancy).</p><br>
+
 
 ### Access the data
 
