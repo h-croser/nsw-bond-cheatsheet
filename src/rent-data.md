@@ -19,8 +19,22 @@ const medianRentsRaw = FileAttachment("./data/median-rents.parquet").parquet();
 ```
 
 ```js
-const medianRentsBeds = medianRentsBedsRaw.toArray();
-const medianRents = medianRentsRaw.toArray();
+function castBigIntsToNumbers(arr) {
+  return arr.map(obj => {
+    const newObj = {};
+    for (const key in obj) {
+      if (typeof obj[key] === 'bigint') {
+        newObj[key] = Number(obj[key]);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+    return newObj;
+  });
+}
+
+const medianRentsBeds = castBigIntsToNumbers(medianRentsBedsRaw.toArray());
+const medianRents = castBigIntsToNumbers(medianRentsRaw.toArray());
 ```
 
 ```js
