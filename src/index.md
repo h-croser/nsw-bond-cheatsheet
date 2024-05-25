@@ -19,7 +19,7 @@ summary {
 
 <summary><strong>Don't give money directly to your landlord/agent. Keep it safe with Rental Bonds Online.</strong></summary>
 
-Register your bond with [Rental Bonds Online (RBO)](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/rental-bonds-online "Rental Bonds Online"), a service offered by NSW Fair Trading.<br>
+Register your bond with [Rental Bonds Online (RBO)](https://www.nsw.gov.au/housing-and-construction/renting-a-place-to-live/residential-rental-bonds/rental-bonds-online-for-tenants "Rental Bonds Online"), a service offered by NSW Fair Trading.<br>
 RBO stores your bond money in escrow so that your landlord can only take your bond if a formal claim has been made (which you can contest).
 
 If you give bond money directly to your landlord or agent legally your bond rights still legally apply, but it is much easier for them to unlawfully take your bond.<br>
@@ -42,7 +42,7 @@ If communication is done verbally, you should follow up with an email to the lan
 
 <summary><strong>Obtain an accurate in-going and out-going condition report.</strong></summary>
 
-A condition report is a document that states the condition of the property's features at the beginning and end of the tenancy, as seen by tenant and landlord/agent. The condition report form can be found [here](https://www.fairtrading.nsw.gov.au/help-centre/forms#Residentialtenancyforms "Fair Trading forms").
+A condition report is a document that states the condition of the property's features at the beginning and end of the tenancy, as seen by tenant and landlord/agent. The condition report form can be found [here](https://www.nsw.gov.au/housing-and-construction/rental-forms-surveys-and-data/resources/residential-tenancy-condition-report "Residential tenancy condition report").
 
 Condition reports are a requirement for tenancies and form an important piece of evidence in many bond disputes.<br>
 It's important that you carefully review the landlord/agent's report and disagree and comment where necessary. Ensure you document your disagreements both in writing and with photographs.
@@ -83,7 +83,7 @@ The property should be empty and clean by the final inspection.<br>
 
 <summary><strong>Request your bond back proactively.</strong></summary>
 
-The bond refund request can be submitted through [RBO](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/rental-bonds-online "Rental Bonds Online") by either the tenant or the landlord/agent.
+The bond refund request can be submitted through [RBO](https://www.nsw.gov.au/housing-and-construction/renting-a-place-to-live/residential-rental-bonds/rental-bonds-online-for-tenants "Rental Bonds Online") by either the tenant or the landlord/agent.
 
 - If the landlord/agent doesn't identify any damage, you should request the entire bond through RBO as soon as the final inspection is complete. It is reasonable to request the bond back if the landlord/agent cannot identify claimable damage during the final inspection.<br>
 - If the landlord/agent states that there is damage and/or cause to withhold bond, or if they are unsure and will "get back to you", urge them to identify the damage and be specific. It _is_ reasonable for the landlord/agent to not know the cost of the damage (as this must be quoted by professionals), but it _isn't_ reasonable for them to refuse to identify the damage itself.
@@ -99,14 +99,14 @@ If the landlord/agent is asking for a portion of your bond, but you disagree wit
 
 <summary><strong>Reasons for landlords to claim bond</strong></summary>
 
-Fair Trading [lists the following](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/ending-a-tenancy#Movingout "Fair Trading Moving Out") as the main reasons for landlords to claim a portion of your bond (there may be other valid reasons):
+Fair Trading [lists the following](https://www.nsw.gov.au/housing-and-construction/renting-a-place-to-live/residential-rental-bonds/dealing-bond-disputes-for-tenants "Dealing with bond disputes") as the main reasons for landlords to claim a portion of your bond (there may be other valid reasons):
 
-- unpaid rent
-- the reasonable cost of repairing damage to the property that is beyond fair wear and tear
-- unpaid water usage charges, as long as the landlord requested payment within three months of receiving the bill
-- any 'break fee' or other charges payable as a result of the tenant breaking the tenancy agreement early
-- the reasonable cost of cleaning any part of the property not left reasonably clean, considering how clean the property was at the start of the tenancy
-- the reasonable cost of having the locks changed, or other security devices replaced, if the tenant doesn't return all keys and security devices they were given
+- you owe money for unpaid rent
+- you have broken the lease early and there is a break fee
+- you have not cleaned the property to the same standard as the start of the tenancy
+- you have not returned the keys or other security devices and locks need replacement. 
+- you have left the property with damage beyond fair wear and tear. 
+- you have unpaid water usage costs (if landlord has requested payment within 3 months of getting the bill).
 
 </details>
 <br>
@@ -120,7 +120,7 @@ Fair wear and tear is the deterioration that occurs over time to the property th
 
 Tenants are responsible for compensating the landlord for damage, but not fair wear and tear.
 
-Fair Trading [provides these examples](https://www.fairtrading.nsw.gov.au/housing-and-property/renting/ending-a-tenancy#Movingout "Fair Trading Moving Out") of damage and fair wear and tear:
+Fair Trading [provides these examples](https://www.nsw.gov.au/housing-and-construction/rules/fair-wear-and-tear-versus-damage-rental-properties "Fair wear and tear versus damage") of damage and fair wear and tear:
 
 | Fair wear and tear                                                    | Damage                                                                        |
 |-----------------------------------------------------------------------|-------------------------------------------------------------------------------|
@@ -152,4 +152,4 @@ There is no obligation to have the property professionally cleaned, unless other
 
 - [Tenants' Union of NSW](https://www.tenants.org.au "Tenants' Union of NSW")
 - [East Area Tenants Service](https://eats.org.au/tenants "East Area Tenants Service")
-- [Fair Trading](https://www.fairtrading.nsw.gov.au/housing-and-property/renting "Fair Trading renting")
+- [NSW Government](https://www.nsw.gov.au/housing-and-construction/renting-a-place-to-live/residential-rental-bonds "Residential rental bonds")
