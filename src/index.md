@@ -22,7 +22,7 @@ summary {
 Register your bond with [Rental Bonds Online (RBO)](https://www.nsw.gov.au/housing-and-construction/renting-a-place-to-live/residential-rental-bonds/rental-bonds-online-for-tenants "Rental Bonds Online"), a service offered by NSW Fair Trading.<br>
 RBO stores your bond money in escrow so that your landlord can only take your bond if a formal claim has been made (which you can contest).
 
-If you give bond money directly to your landlord or agent legally your bond rights still legally apply, but it is much easier for them to unlawfully take your bond.<br>
+If you give bond money directly to your landlord or agent your bond rights still legally apply, but it is much easier for them to unlawfully take your bond.<br>
 If you are asked to pay your bond in cash directly to a landlord or agent, you should instead suggest using RBO. A landlord/agent refusing to lodge bond through RBO should be treated with suspicion and ideally avoided.
 
 </details>
