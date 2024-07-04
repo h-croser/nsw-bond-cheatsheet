@@ -2,6 +2,7 @@
 title: About
 theme: [coffee, parchment]
 ---
+<script defer data-domain="nswrentalbonds.info/about" src="https://plausible.io/js/script.js"></script>
 
 # About this site
 

@@ -2,6 +2,7 @@
 title: Rent data
 theme: [coffee, parchment]
 ---
+<script defer data-domain="nswrentalbonds.info/rent-data" src="https://plausible.io/js/script.js"></script>
 
 # Rent Data
 
