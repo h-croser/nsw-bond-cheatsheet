@@ -2,6 +2,7 @@
 title: Cheatsheet
 theme: [coffee, parchment]
 ---
+<script defer data-domain="nswrentalbonds.info" src="https://plausible.io/js/script.js"></script>
 
 <style>
 summary {
