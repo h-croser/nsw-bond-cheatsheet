@@ -76,7 +76,13 @@ class FairTradingScraper:
         url_pattern = re.compile(f'{FairTradingScraper.DATA_LINK_PREFIX}.*{search_term}((?!year).)*\.xlsx', flags=re.I)
 
         link_tags: ResultSet = soup.find_all('a', href=True, recursive=True)
-        matching_links: list[str] = [FairTradingScraper.DATA_ROOT_PATH + a_tag['href'] for a_tag in link_tags if url_pattern.search(a_tag['href'])]
+        matching_links: list[str] = []
+        for a_tag in link_tags:
+            if url_pattern.search(a_tag['href']):
+                link = a_tag['href']
+                if not link.startswith(FairTradingScraper.DATA_ROOT_PATH):
+                    link = FairTradingScraper.DATA_ROOT_PATH + link
+                matching_links.append(link)
 
         return matching_links
 
@@ -127,6 +133,7 @@ class FairTradingScraper:
     @staticmethod
     def get_refunds_dataframe() -> DataFrame:
         refunds_links: list[str] = FairTradingScraper._get_links_from_table('refund')
+        print(refunds_links)
 
         refunds_df = FairTradingScraper._get_df_from_links(refunds_links, "refunds")
         column_replace = {
@@ -244,7 +251,6 @@ class FairTradingScraper:
 
     @staticmethod
     def update_all():
-        # Lodgements are currently unused
         print("Gathering models")
         holdings_df: DataFrame = FairTradingScraper.get_holdings_dataframe()
         refunds_df: DataFrame = FairTradingScraper.get_refunds_dataframe()
