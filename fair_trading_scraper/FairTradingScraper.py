@@ -133,7 +133,6 @@ class FairTradingScraper:
     @staticmethod
     def get_refunds_dataframe() -> DataFrame:
         refunds_links: list[str] = FairTradingScraper._get_links_from_table('refund')
-        print(refunds_links)
 
         refunds_df = FairTradingScraper._get_df_from_links(refunds_links, "refunds")
         column_replace = {
