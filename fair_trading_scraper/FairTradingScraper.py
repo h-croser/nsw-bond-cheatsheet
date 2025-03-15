@@ -6,7 +6,7 @@ from os.path import dirname, abspath, join
 from typing import Optional
 
 import requests
-from pandas import ExcelFile, DataFrame, concat, Series, cut
+from pandas import ExcelFile, DataFrame, concat, Series, cut, NA
 from requests import Response
 from bs4 import BeautifulSoup, ResultSet
 from tqdm import tqdm
@@ -73,7 +73,7 @@ class FairTradingScraper:
     def _get_links_from_table(search_term: str) -> list[str]:
         response: Response = requests.get(FairTradingScraper.DATA_LIST_URL)
         soup = BeautifulSoup(response.text, "html.parser")
-        url_pattern = re.compile(f'{FairTradingScraper.DATA_LINK_PREFIX}.*{search_term}((?!year).)*\.xlsx', flags=re.I)
+        url_pattern = re.compile(fr'{FairTradingScraper.DATA_LINK_PREFIX}.*{search_term}((?!year).)*\.xlsx', flags=re.I)
 
         link_tags: ResultSet = soup.find_all('a', href=True, recursive=True)
         matching_links: list[str] = []
@@ -184,15 +184,15 @@ class FairTradingScraper:
             try:
                 row['num_bedrooms'] = int(row['num_bedrooms'])
             except ValueError:
-                return
+                row['num_bedrooms'] = NA
             try:
                 row['weekly_rent'] = int(row['weekly_rent'])
             except ValueError:
-                return
+                row['weekly_rent'] = NA
             try:
                 row['date'] = str(row['date'])[:8] + '01'
             except (ValueError, IndexError):
-                return
+                row['date'] = NA
 
             return row
 
