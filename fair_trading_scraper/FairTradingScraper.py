@@ -6,7 +6,7 @@ from os.path import dirname, abspath, join
 from typing import Optional
 
 import requests
-from pandas import ExcelFile, DataFrame, concat, Series, cut, NA
+from pandas import ExcelFile, DataFrame, concat, Series, cut, NA, read_parquet
 from requests import Response
 from bs4 import BeautifulSoup, ResultSet
 from tqdm import tqdm
@@ -64,6 +64,27 @@ class FileCache:
     CACHE_MAP: dict[str, str] = build_cache_map()
 
 
+class HistoricalDataAppender:
+    @staticmethod
+    def append_historical_data(df: DataFrame, historical_filename: str) -> DataFrame:
+        data_path: str = join(BASE_DATA_DIR, historical_filename)
+        historical_data: DataFrame = read_parquet(data_path, engine='fastparquet')
+        df_combined = concat([historical_data, df], ignore_index=True)
+        return df_combined
+
+    @staticmethod
+    def append_historical_holdings(df: DataFrame) -> DataFrame:
+        return HistoricalDataAppender.append_historical_data(df, 'historical_holdings.parquet')
+
+    @staticmethod
+    def append_historical_refunds(df: DataFrame) -> DataFrame:
+        return HistoricalDataAppender.append_historical_data(df, 'historical_refunds.parquet')
+
+    @staticmethod
+    def append_historical_lodgements(df: DataFrame) -> DataFrame:
+        return HistoricalDataAppender.append_historical_data(df, 'historical_lodgements.parquet')
+
+
 class FairTradingScraper:
     DATA_ROOT_PATH: str = "https://www.nsw.gov.au"
     DATA_LIST_URL: str = DATA_ROOT_PATH + "/housing-and-construction/rental-forms-surveys-and-data/rental-bond-data"
@@ -106,13 +127,15 @@ class FairTradingScraper:
 
     @staticmethod
     def _get_df_from_links(links: list[str], links_name: str) -> DataFrame:
-        complete_df: DataFrame = DataFrame()
+        data_dfs: list[DataFrame] = []
         for link in tqdm(links, desc=f"Loading {links_name}", unit="links"):
             excel_file: ExcelFile = FairTradingScraper._get_excel_file(link)
             data_df: DataFrame = excel_file.parse(skiprows=2)
-            complete_df = concat([complete_df, data_df], ignore_index=True)
-
-        return complete_df
+            data_dfs.append(data_df)
+        if len(data_dfs) > 0:
+            return concat(data_dfs, ignore_index=True)
+        else:
+            return DataFrame()
 
     @staticmethod
     def get_lodgement_dataframe() -> DataFrame:
@@ -127,6 +150,8 @@ class FairTradingScraper:
             'Weekly Rent': 'weekly_rent'
         }
         lodgement_df = lodgement_df.rename(columns=column_replace)
+        lodgement_df = HistoricalDataAppender.append_historical_lodgements(lodgement_df)
+        lodgement_df = lodgement_df.sort_values(by=['date'])
 
         return lodgement_df
 
@@ -145,6 +170,8 @@ class FairTradingScraper:
             'Days Bond Held': 'num_days_held'
         }
         refunds_df = refunds_df.rename(columns=column_replace)
+        refunds_df = HistoricalDataAppender.append_historical_refunds(refunds_df)
+        refunds_df = refunds_df.sort_values(by=['date_paid'])
 
         return refunds_df
 
@@ -153,7 +180,7 @@ class FairTradingScraper:
         holdings_links: list[str] = FairTradingScraper._get_links_from_table('held')
         month_pattern = re.compile(r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s*\d{4}\b', flags=re.I)
 
-        complete_df: DataFrame = DataFrame()
+        data_dfs: list[DataFrame] = []
         for link in tqdm(holdings_links, desc="Loading holdings", unit="links"):
             excel_file: ExcelFile = FairTradingScraper._get_excel_file(link)
             header_df: DataFrame = excel_file.parse(nrows=1, header=None)
@@ -166,10 +193,17 @@ class FairTradingScraper:
 
             data_df: DataFrame = excel_file.parse(skiprows=2)
             data_df['date'] = date_obj
-            complete_df = concat([complete_df, data_df], ignore_index=True)
+            data_dfs.append(data_df)
 
-        complete_df = complete_df.rename(columns={'Postcode': 'postcode', 'Bonds Held': 'bonds_held'})
+        if len(data_dfs) > 0:
+            complete_df = concat(data_dfs, ignore_index=True)
+            complete_df = complete_df.rename(columns={'Postcode': 'postcode', 'Bonds Held': 'bonds_held'})
+        else:
+            complete_df = DataFrame(columns=['postcode', 'bonds_held', 'date'])
+
         complete_df = complete_df[['postcode', 'bonds_held', 'date']]
+        complete_df = HistoricalDataAppender.append_historical_holdings(complete_df)
+        complete_df = complete_df.sort_values(by=['date'])
 
         return complete_df
 
