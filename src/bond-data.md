@@ -91,7 +91,7 @@ postcodeMap.addEventListener("click", (event) => {
 ```js
 const sumBonds = Plot.plot({
     title: `In ${postcodeStr}, how much bond money has been paid to landlords vs tenants?`,
-    subtitle: "The sum of all bond funds returned to tenants or given to landlords after the bond is settled since January, 2022",
+    subtitle: "The sum of all bond funds returned to tenants or given to landlords after the bond is settled since January, 2017",
     marginTop: 20,
     marginBottom: 40,
     marginLeft: 80,
@@ -124,7 +124,7 @@ const sumBonds = Plot.plot({
 ```js
 const bondRecipients = Plot.plot({
     title: `In ${postcodeStr}, who received the bond at the end of the lease?`,
-    subtitle: "Number of recipients of total bond since January, 2022",
+    subtitle: "Number of recipients of total bond since January, 2017",
     marginTop: 20,
     marginBottom: 40,
     marginLeft: 80,
